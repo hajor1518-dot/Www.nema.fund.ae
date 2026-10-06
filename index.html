@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2e8">
+  <meta name="description" content="NEMA brings good surplus food to the people who need it across the UAE.">
+  <title>NEMA — Good food. Brighter tomorrows.</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --cream: #f5f2e8;
+      --paper: #fffdf7;
+      --green: #173d2d;
+      --green-2: #285b40;
+      --leaf: #dce9ce;
+      --leaf-2: #bcd5a8;
+      --ink: #19352a;
+      --muted: #6d796e;
+      --line: #dce2d5;
+      --orange: #d86f43;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; }
+    .shell { width: min(1160px, calc(100% - 64px)); margin: 0 auto; }
+    .topbar { height: 78px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(23,61,45,.12); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 23px; font-weight: 800; letter-spacing: .02em; }
+    .brand-mark { position: relative; width: 30px; height: 30px; display: inline-block; }
+    .brand-mark::before, .brand-mark::after { content: ''; position: absolute; width: 13px; height: 20px; background: var(--green); border-radius: 13px 2px 13px 2px; transform: rotate(-32deg); top: 3px; left: 2px; }
+    .brand-mark::after { background: #8cae71; transform: rotate(32deg) scaleX(-1); top: 8px; left: 14px; }
+    .nav { display: flex; align-items: center; gap: 34px; color: #435c4d; font-size: 13px; font-weight: 600; }
+    .nav a:hover { color: var(--orange); }
+    .nav-cta, .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid var(--green); border-radius: 4px; background: var(--green); color: white; padding: 13px 19px; font-size: 13px; font-weight: 700; cursor: pointer; transition: transform .18s ease, background .18s ease; }
+    .nav-cta { padding: 11px 16px; }
+    .button:hover, .nav-cta:hover { background: #24543c; transform: translateY(-2px); }
+    .button.secondary { background: transparent; color: var(--green); }
+    .button.secondary:hover { background: var(--leaf); }
+    .hero { min-height: 578px; display: grid; grid-template-columns: 1.08fr .92fr; gap: 35px; align-items: center; padding: 64px 0 78px; position: relative; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--green-2); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ''; width: 27px; height: 1px; background: var(--orange); }
+    h1 { margin: 21px 0 19px; color: var(--green); font-family: var(--serif); font-size: clamp(54px, 6.2vw, 82px); font-weight: 500; line-height: .98; letter-spacing: -.045em; }
+    h1 em { color: var(--green-2); font-weight: 400; }
+    .hero-copy { max-width: 490px; color: #5c6b60; font-size: 15px; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+    .hero-foot { display: flex; align-items: center; gap: 12px; margin-top: 29px; color: var(--muted); font-size: 11px; }
+    .avatars { display: flex; padding-left: 4px; }
+    .avatar { width: 25px; height: 25px; border: 2px solid var(--cream); border-radius: 50%; margin-left: -5px; background: #c89869; }
+    .avatar:nth-child(2) { background: #d6b493; }.avatar:nth-child(3) { background: #78926d; }
+    .hero-art { height: 395px; background: #dce9ce; position: relative; overflow: hidden; border-radius: 49% 49% 7px 7px; }
+    .hero-art::before { content: ''; position: absolute; inset: 24px; border: 1px solid rgba(23,61,45,.16); border-radius: 49% 49% 4px 4px; }
+    .sun { position: absolute; width: 175px; height: 175px; top: 53px; right: 61px; border-radius: 50%; background: #f2d59b; }
+    .hill { position: absolute; width: 130%; height: 220px; left: -14%; bottom: -56px; border-radius: 50% 50% 0 0; background: #779771; transform: rotate(-8deg); }
+    .hill::after { content: ''; position: absolute; inset: -57px -23px auto; height: 160px; border-radius: 50% 50% 0 0; background: #a8c294; transform: rotate(13deg); }
+    .building { position: absolute; z-index: 2; bottom: 108px; left: 28%; width: 174px; height: 125px; background: #f7f1dd; clip-path: polygon(50% 0,100% 30%,100% 100%,0 100%,0 30%); }
+    .building::before { content: ''; position: absolute; inset: 46px 19px 0; background: repeating-linear-gradient(90deg,#d6c9a7 0 23px,transparent 23px 42px); }
+    .building::after { content: ''; position: absolute; left: 72px; bottom: 0; width: 30px; height: 54px; background: #bc8557; }
+    .tree { position: absolute; z-index: 3; bottom: 90px; right: 15%; width: 20px; height: 90px; background: #795b3f; }
+    .tree::before { content: ''; position: absolute; width: 88px; height: 96px; top: -67px; left: -34px; border-radius: 50%; background: #4d7652; box-shadow: 19px 14px 0 -12px #739466, -19px 19px 0 -12px #63865e; }
+    .floating-note { position: absolute; z-index: 4; top: 43px; left: 6px; width: 183px; padding: 14px; border-radius: 4px; background: var(--paper); box-shadow: 0 12px 35px #173d2d1a; }
+    .note-top { display: flex; align-items: center; gap: 7px; font-size: 9px; font-weight: 800; color: var(--green-2); text-transform: uppercase; letter-spacing: .09em; }
+    .note-dot { width: 7px; height: 7px; border-radius: 50%; background: #76a75d; }
+    .floating-note strong { display: block; margin-top: 8px; font-family: var(--serif); font-size: 17px; font-weight: 500; }
+    .floating-note small { color: var(--muted); font-size: 10px; }
+    .art-caption { position: absolute; z-index: 4; bottom: 17px; left: 22px; color: white; font-family: var(--serif); font-size: 20px; }
+    .impact { background: var(--green); color: white; }
+    .impact-inner { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); align-items: center; min-height: 112px; gap: 24px; }
+    .impact-label { max-width: 180px; font-family: var(--serif); font-size: 20px; line-height: 1.2; }
+    .stat { border-left: 1px solid #ffffff3a; padding-left: 20px; }
+    .stat strong { display: block; font-family: var(--serif); font-size: 27px; font-weight: 500; }
+    .stat span { display: block; margin-top: 4px; color: #c7d7c8; font-size: 10px; }
+    .section { padding: 96px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 31px; }
+    .section-heading h2 { margin: 11px 0 0; color: var(--green); font-family: var(--serif); font-size: clamp(37px, 4vw, 51px); font-weight: 500; letter-spacing: -.025em; }
+    .section-heading p { max-width: 375px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .food-tabs, .role-tabs { display: flex; border-bottom: 1px solid var(--line); gap: 8px; margin-bottom: 24px; }
+    .tab { position: relative; padding: 12px 15px; border: 0; background: transparent; color: #718075; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .tab[aria-selected="true"] { color: var(--green); }
+    .tab[aria-selected="true"]::after { content: ''; position: absolute; height: 2px; background: var(--orange); inset: auto 14px -1px; }
+    .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .food-card { background: var(--paper); border: 1px solid #e7e8dc; border-radius: 5px; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+    .food-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px #173d2d12; }
+    .food-visual { height: 190px; position: relative; display: grid; place-items: center; overflow: hidden; background: #e9dfc7; }
+    .food-visual.salad { background: #dbe8d2; }.food-visual.bakery { background: #ead9c1; }
+    .plate { width: 153px; height: 125px; border-radius: 50%; display: grid; place-items: center; background: #fffdf3; box-shadow: 0 10px 15px #39291420; transform: rotate(-7deg); }
+    .food-symbol { font-size: 70px; filter: drop-shadow(0 4px 1px #47351c2b); line-height: 1; }
+    .meal-label { position: absolute; top: 14px; left: 14px; border-radius: 2px; padding: 6px 8px; background: #fffdf2dc; color: var(--green); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .food-content { padding: 17px 17px 15px; }
+    .food-title-row { display: flex; justify-content: space-between; align-items: start; gap: 10px; }
+    .food-title-row h3 { margin: 0; color: var(--green); font-family: var(--serif); font-size: 21px; font-weight: 500; }
+    .servings { white-space: nowrap; color: var(--green-2); font-size: 10px; font-weight: 800; }
+    .food-meta { margin: 9px 0 17px; color: var(--muted); font-size: 11px; }
+    .food-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 13px; }
+    .distance { color: #637165; font-size: 10px; }
+    .request-button { border: 0; border-radius: 3px; background: var(--leaf); color: var(--green); padding: 9px 11px; font-size: 10px; font-weight: 800; cursor: pointer; }
+    .request-button:hover { background: var(--leaf-2); }
+    .request-button[aria-pressed="true"] { background: var(--green); color: white; }
+    .empty-state { display: none; padding: 40px; text-align: center; color: var(--muted); }
+    .how { background: #e8eddf; }
+    .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 68px; align-items: start; }
+    .how-intro h2 { margin: 11px 0 14px; color: var(--green); font-family: var(--serif); font-size: 47px; font-weight: 500; line-height: 1.05; }
+    .how-intro p { max-width: 405px; color: #677569; font-size: 13px; line-height: 1.8; }
+    .role-tabs { border-color: #cbd6c5; margin-top: 27px; }
+    .role-panel { display: none; }
+    .role-panel.active { display: block; animation: reveal .3s ease both; }
+    .step { display: grid; grid-template-columns: 39px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid #cbd6c5; }
+    .step-number { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #a9bba2; border-radius: 50%; color: var(--green); font-family: var(--serif); font-size: 16px; }
+    .step h3 { margin: 0 0 5px; color: var(--green); font-size: 14px; }
+    .step p { margin: 0; color: #6a786d; font-size: 11px; line-height: 1.6; }
+    .how-action { margin-top: 20px; }
+    .partner-strip { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; padding: 38px 0; border-bottom: 1px solid var(--line); color: #788579; }
+    .partner-strip span { font-family: var(--serif); font-size: 16px; }
+    .partner-strip .caption { font-family: var(--sans); font-size: 9px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .closing { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 77px 0; }
+    .closing h2 { max-width: 580px; margin: 0; color: var(--green); font-family: var(--serif); font-size: clamp(38px, 5vw, 59px); font-weight: 500; line-height: 1.02; }
+    .closing h2 em { color: #698859; }
+    footer { background: var(--green); color: white; padding: 25px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; color: #d0ddd1; font-size: 10px; }
+    .footer-inner .brand { color: white; font-size: 18px; }
+    .footer-links { display: flex; gap: 20px; }
+    .toast { position: fixed; right: 24px; bottom: 24px; z-index: 10; max-width: calc(100% - 48px); padding: 13px 17px; border-radius: 4px; background: var(--green); color: white; font-size: 12px; box-shadow: 0 8px 25px #173d2d2c; opacity: 0; transform: translateY(12px); pointer-events: none; transition: .22s ease; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    dialog { width: min(440px, calc(100% - 30px)); padding: 26px; border: 1px solid var(--line); border-radius: 5px; background: var(--paper); color: var(--ink); box-shadow: 0 18px 80px #173d2d3b; }
+    dialog::backdrop { background: #173d2d70; }
+    dialog h2 { margin: 0 0 7px; color: var(--green); font-family: var(--serif); font-size: 30px; font-weight: 500; }
+    dialog p { color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    label { display: block; margin-top: 13px; color: var(--green); font-size: 10px; font-weight: 800; }
+    input, select { width: 100%; margin-top: 6px; padding: 11px; border: 1px solid var(--line); border-radius: 3px; background: white; color: var(--ink); font-size: 12px; }
+    .dialog-actions { display: flex; gap: 9px; margin-top: 20px; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 38px, 570px); }
+      .topbar { height: 68px; }.nav { gap: 15px; }.nav a:not(.nav-cta) { display: none; }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 38px; padding: 57px 0 50px; }
+      h1 { font-size: clamp(53px, 12vw, 73px); }
+      .hero-art { width: min(100%, 430px); height: 340px; margin: 0 auto; }
+      .impact-inner { grid-template-columns: repeat(3, 1fr); padding: 23px 0; gap: 17px; }
+      .impact-label { grid-column: 1/-1; max-width: none; }
+      .stat { padding-left: 12px; }.stat:first-of-type { padding-left: 0; border-left: 0; }
+      .stat strong { font-size: 23px; }.stat span { font-size: 9px; }
+      .section { padding: 68px 0; }
+      .section-heading { align-items: start; flex-direction: column; gap: 5px; }
+      .section-heading p { margin: 0; }
+      .food-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+      .food-visual { height: 150px; }.plate { width: 120px; height: 101px; }.food-symbol { font-size: 57px; }
+      .food-content { padding: 13px; }.food-title-row h3 { font-size: 18px; }.servings { font-size: 9px; }
+      .how-grid { grid-template-columns: 1fr; gap: 29px; }.how-intro h2 { font-size: 42px; }
+      .closing { align-items: start; flex-direction: column; padding: 58px 0; }
+      .partner-strip { justify-content: flex-start; gap: 17px 25px; }.partner-strip .caption { width: 100%; }
+    }
+    @media (max-width: 420px) {
+      .shell { width: calc(100% - 32px); }
+      .hero-actions .button { flex: 1; padding: 13px 12px; font-size: 12px; }
+      .food-grid { grid-template-columns: 1fr; }
+      .food-visual { height: 180px; }.plate { width: 145px; height: 118px; }.food-symbol { font-size: 68px; }
+      .food-card { display: grid; grid-template-columns: 38% 1fr; }
+      .food-content { display: flex; flex-direction: column; justify-content: center; }
+      .food-visual { height: 100%; min-height: 170px; }
+      .food-title-row { flex-direction: column; gap: 4px; }
+      .food-meta { margin: 7px 0 11px; }
+      .food-bottom { align-items: end; gap: 6px; }
+      .distance { line-height: 1.35; }
+      .footer-inner { align-items: start; flex-direction: column; }
+      .footer-links { gap: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="#top" aria-label="NEMA home"><span class="brand-mark" aria-hidden="true"></span><span>NEMA</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#food">Available food</a>
+      <a href="#how">How it works</a>
+      <a class="nav-cta" href="#join">Join the movement <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="shell hero" id="top">
+      <div>
+        <div class="eyebrow">UAE food rescue network</div>
+        <h1>Good food.<br><em>Brighter</em><br>tomorrows.</h1>
+        <p class="hero-copy">NEMA brings good surplus food to the people who need it. We connect restaurants, hotels and supermarkets with charities across the UAE, so less food goes to waste and more reaches the community.</p>
+        <div class="hero-actions">
+          <a class="button" href="#how" data-role-link="donor">For Food Donors <span aria-hidden="true">→</span></a>
+          <a class="button secondary" href="#how" data-role-link="charity">For Charities <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-foot"><div class="avatars" aria-hidden="true"><span class="avatar"></span><span class="avatar"></span><span class="avatar"></span></div><span>Good food, moving through good hands.</span></div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Illustration of a UAE neighborhood at sunset">
+        <div class="sun"></div><div class="hill"></div><div class="building"></div><div class="tree"></div>
+        <div class="floating-note"><span class="note-top"><i class="note-dot"></i> Just rescued</span><strong>18 warm meals</strong><small>Al Barsha · 12 min ago</small></div>
+        <div class="art-caption">A little less waste.<br>A lot more good.</div>
+      </div>
+    </section>
+    <section class="impact" aria-label="NEMA impact">
+      <div class="shell impact-inner">
+        <div class="impact-label">Small acts. Real impact.</div>
+        <div class="stat"><strong>2,480<span aria-hidden="true">+</span></strong><span>meals rescued this month</span></div>
+        <div class="stat"><strong>36</strong><span>community partners</span></div>
+        <div class="stat"><strong>7 emirates</strong><span>one connected community</span></div>
+      </div>
+    </section>
+    <section class="shell section" id="food">
+      <div class="section-heading">
+        <div><div class="eyebrow">Fresh from our network</div><h2>Good things, ready to go.</h2></div>
+        <p>Surplus with a purpose. Browse today's available food and request a pickup for your community.</p>
+      </div>
+      <div class="food-tabs" role="tablist" aria-label="Filter food listings">
+        <button class="tab" role="tab" aria-selected="true" data-filter="all">All food</button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="meals">Meals</button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="salads">Fresh</button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="bakery">Bakery</button>
+      </div>
+      <div class="food-grid" id="food-grid">
+        <article class="food-card" data-category="meals">
+          <div class="food-visual"><span class="meal-label">Ready meals</span><div class="plate"><span class="food-symbol" aria-hidden="true">🍗</span></div></div>
+          <div class="food-content"><div class="food-title-row"><h3>Grilled chicken meals</h3><span class="servings">24 meals</span></div><p class="food-meta">Freshly prepared · Al Barsha</p><div class="food-bottom"><span class="distance">Pickup today<br>2:00–4:00 pm</span><button class="request-button" aria-pressed="false">Request pickup</button></div></div>
+        </article>
+        <article class="food-card" data-category="salads">
+          <div class="food-visual salad"><span class="meal-label">Fresh today</span><div class="plate"><span class="food-symbol" aria-hidden="true">🥗</span></div></div>
+          <div class="food-content"><div class="food-title-row"><h3>Fresh garden salads</h3><span class="servings">16 boxes</span></div><p class="food-meta">Packed this morning · JLT</p><div class="food-bottom"><span class="distance">Pickup today<br>1:30–3:30 pm</span><button class="request-button" aria-pressed="false">Request pickup</button></div></div>
+        </article>
+        <article class="food-card" data-category="bakery">
+          <div class="food-visual bakery"><span class="meal-label">Bakery</span><div class="plate"><span class="food-symbol" aria-hidden="true">🥐</span></div></div>
+          <div class="food-content"><div class="food-title-row"><h3>Bakery assortment</h3><span class="servings">30 pieces</span></div><p class="food-meta">Baked today · Downtown Dubai</p><div class="food-bottom"><span class="distance">Pickup today<br>4:00–6:00 pm</span><button class="request-button" aria-pressed="false">Request pickup</button></div></div>
+        </article>
+      </div>
+      <div class="empty-state" id="empty-state">No listings in this category just yet.</div>
+    </section>
+    <section class="how section" id="how">
+      <div class="shell how-grid">
+        <div class="how-intro"><div class="eyebrow">A simple way to do good</div><h2>One connection<br>changes the whole journey.</h2><p>Whether you have surplus to share or a community to support, NEMA makes every step clear, coordinated and accountable.</p>
+          <div class="role-tabs" role="tablist" aria-label="Choose your NEMA role">
+            <button class="tab" role="tab" id="donor-tab" aria-selected="true" aria-controls="donor-panel" data-role="donor">Food donors</button>
+            <button class="tab" role="tab" id="charity-tab" aria-selected="false" aria-controls="charity-panel" data-role="charity">Charities</button>
+          </div>
+        </div>
+        <div>
+          <div class="role-panel active" id="donor-panel" role="tabpanel" aria-labelledby="donor-tab">
+            <div class="step"><span class="step-number">01</span><div><h3>Create your account</h3><p>Set up your restaurant, hotel or supermarket profile in a few minutes.</p></div></div>
+            <div class="step"><span class="step-number">02</span><div><h3>Add your surplus food</h3><p>Share what's available, how much there is and when it can be collected.</p></div></div>
+            <div class="step"><span class="step-number">03</span><div><h3>Publish your listing</h3><p>Nearby registered charities see your offer as soon as it goes live.</p></div></div>
+            <div class="step"><span class="step-number">04</span><div><h3>Manage requests</h3><p>Confirm a charity's request and follow the handoff through pickup.</p></div></div>
+            <button class="button how-action" data-open-form="donor">Become a food donor <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="role-panel" id="charity-panel" role="tabpanel" aria-labelledby="charity-tab" hidden>
+            <div class="step"><span class="step-number">01</span><div><h3>Browse available food</h3><p>Explore nearby listings by food type, quantity and pickup time.</p></div></div>
+            <div class="step"><span class="step-number">02</span><div><h3>Request a pickup</h3><p>Choose what your community needs and send a request to the donor.</p></div></div>
+            <div class="step"><span class="step-number">03</span><div><h3>Track your pickup</h3><p>See request updates and coordinate collection with the food donor.</p></div></div>
+            <a class="button how-action" href="#food">Browse available food <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="shell partner-strip" aria-label="NEMA partners"><span class="caption">Better together</span><span>Restaurants</span><span>Hotels</span><span>Supermarkets</span><span>Community kitchens</span><span>Charities</span></section>
+    <section class="shell closing" id="join">
+      <h2>Make surplus mean<br><em>something more.</em></h2>
+      <button class="button" data-open-form="donor">Join NEMA today <span aria-hidden="true">↗</span></button>
+    </section>
+  </main>
+  <footer><div class="shell footer-inner"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>NEMA</span></a><span>Food rescued. Community nourished. UAE.</span><div class="footer-links"><a href="#food">Available food</a><a href="#how">How it works</a><a href="mailto:hello@nema.fund.ae">Get in touch</a></div></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="join-dialog" aria-labelledby="dialog-title">
+    <form id="join-form">
+      <h2 id="dialog-title">Let's do good together.</h2>
+      <p>Tell us a little about your organisation and the NEMA team will be in touch.</p>
+      <div class="form-row"><label>Organisation name<input name="organisation" required placeholder="Your organisation"></label><label>Your role<select name="role"><option>Food donor</option><option>Charity</option></select></label></div>
+      <label>Work email<input type="email" name="email" required placeholder="you@organisation.ae"></label>
+      <div class="dialog-actions"><button class="button" type="submit">Send interest <span aria-hidden="true">→</span></button><button class="button secondary" type="button" id="close-dialog">Not now</button></div>
+    </form>
+  </dialog>
+  <script>
+    const foodTabs = document.querySelectorAll('[data-filter]');
+    const foodCards = document.querySelectorAll('.food-card');
+    const emptyState = document.getElementById('empty-state');
+    const toast = document.getElementById('toast');
+    const dialog = document.getElementById('join-dialog');
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    foodTabs.forEach((tab) => tab.addEventListener('click', () => {
+      foodTabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+      let visibleCount = 0;
+      foodCards.forEach((card) => {
+        const visible = tab.dataset.filter === 'all' || card.dataset.category === tab.dataset.filter;
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+      emptyState.style.display = visibleCount ? 'none' : 'block';
+    }));
+
+    document.querySelectorAll('.role-tabs [data-role]').forEach((tab) => tab.addEventListener('click', () => {
+      const role = tab.dataset.role;
+      document.querySelectorAll('.role-tabs [data-role]').forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+      document.querySelectorAll('.role-panel').forEach((panel) => {
+        const active = panel.id === `${role}-panel`;
+        panel.classList.toggle('active', active);
+        panel.hidden = !active;
+      });
+    }));
+
+    document.querySelectorAll('[data-role-link]').forEach((link) => link.addEventListener('click', () => {
+      const tab = document.querySelector(`.role-tabs [data-role="${link.dataset.roleLink}"]`);
+      if (tab) tab.click();
+    }));
+
+    document.querySelectorAll('.request-button').forEach((button) => button.addEventListener('click', () => {
+      const requested = button.getAttribute('aria-pressed') === 'true';
+      button.setAttribute('aria-pressed', String(!requested));
+      button.textContent = requested ? 'Request pickup' : 'Requested ✓';
+      showToast(requested ? 'Pickup request removed.' : 'Pickup request sent. We’ll keep you updated.');
+    }));
+
+    document.querySelectorAll('[data-open-form]').forEach((button) => button.addEventListener('click', () => {
+      const role = button.dataset.openForm;
+      const roleSelect = dialog.querySelector('[name="role"]');
+      roleSelect.value = role === 'charity' ? 'Charity' : 'Food donor';
+      dialog.showModal();
+    }));
+    document.getElementById('close-dialog').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    document.getElementById('join-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const organisation = formData.get('organisation').trim();
+      dialog.close();
+      event.currentTarget.reset();
+      showToast(`Thanks, ${organisation}. NEMA will be in touch soon.`);
+    });
+  </script>
+</body>
+</html>
