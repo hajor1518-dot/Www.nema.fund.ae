@@ -272,12 +272,13 @@
       </div>
       <form class="site-form form-panel" action="https://formsubmit.co/hajor1518@gmail.com" method="POST">
         <input type="hidden" name="submissionType" value="NEMA food donation">
-        <input type="hidden" name="_subject" value="New NEMA food donation">
+        <input type="hidden" name="_subject" value="New food donation published on NEMA">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_next" value="https://hajor1518-dot.github.io/Www.nema.fund.ae/?submitted=donation">
+        <input type="text" name="_honey" style="display:none">
         <div class="form-grid">
           <label class="field">Business or donor name<input type="text" name="businessName" autocomplete="organization" required></label>
-          <label class="field">Contact number<input type="tel" name="contactNumber" autocomplete="tel" placeholder="+971 50 123 4567" required></label>
+          <label class="field">Contact number<input type="tel" name="contactNumber" autocomplete="tel" placeholder="+971 50 123 4567" pattern="\x2B?[0-9][0-9\x20\x28\x29\x2D]{7,17}" title="Enter a valid phone number." required></label>
           <label class="field">Contact email<input type="email" name="contactEmail" autocomplete="email" placeholder="you@business.ae" required></label>
           <label class="field">Food category<select name="foodCategory" required><option value="" disabled selected>Select a category</option><option>Prepared meals</option><option>Bakery</option><option>Fruit and vegetables</option><option>Packaged food</option><option>Dairy</option><option>Meat and poultry</option><option>Drinks</option><option>Other safe food</option></select></label>
           <label class="field">Food name<input type="text" name="foodName" required></label>
@@ -358,17 +359,18 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <dialog id="join-dialog" aria-labelledby="dialog-title">
     <form id="join-form" action="https://formsubmit.co/hajor1518@gmail.com" method="POST">
-      <input type="hidden" name="submissionType" value="NEMA donor or charity request">
-      <input type="hidden" name="_subject" value="New NEMA donor or charity request">
+      <input type="hidden" name="submissionType" value="Let's do good together request">
+      <input type="hidden" name="_subject" value="New Let's Do Good Together request — NEMA">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" value="https://hajor1518-dot.github.io/Www.nema.fund.ae/?submitted=request">
+      <input type="text" name="_honey" style="display:none">
       <h2 id="dialog-title">Let’s do good together.</h2>
       <p>Tell us a little about your organisation and the NEMA team will be in touch.</p>
       <div class="dialog-fields">
         <label class="field">Organisation name<input name="organisation" type="text" autocomplete="organization" required placeholder="Your organisation"></label>
         <label class="field">Your role<select name="role" required><option value="" disabled selected>Select your role</option><option>Food donor</option><option>Charity</option><option>NGO</option><option>Volunteer</option><option>Community organisation</option></select></label>
         <label class="field field-wide">Work email<input type="email" name="email" autocomplete="email" required placeholder="you@organisation.ae"></label>
-        <label class="field field-wide">Contact number<input type="tel" name="contactNumber" autocomplete="tel" placeholder="+971 50 123 4567" required></label>
+        <label class="field field-wide">Contact number<input type="tel" name="contactNumber" autocomplete="tel" placeholder="+971 50 123 4567" pattern="\x2B?[0-9][0-9\x20\x28\x29\x2D]{7,17}" title="Enter a valid phone number." required></label>
         <label class="field field-wide">Pickup location<input type="text" name="pickupLocation" autocomplete="street-address" placeholder="Enter the complete pickup address" required></label>
         <label class="field field-wide">Preferred pickup date and time<input type="datetime-local" name="pickupDateTime" required></label>
         <label class="field field-wide">Additional details<textarea name="message" placeholder="Describe the available food or support needed"></textarea></label>
@@ -453,7 +455,7 @@
 
     const successMessages = {
       request: 'Thank you! The NEMA team received your request and will contact you soon.',
-      donation: 'Thank you! Your food donation was sent to the NEMA team.',
+      donation: 'Thank you! Your food donation was sent successfully to the NEMA team.',
       survey: 'Thank you for helping NEMA improve.'
     };
     const submittedType = new URLSearchParams(window.location.search).get('submitted');
