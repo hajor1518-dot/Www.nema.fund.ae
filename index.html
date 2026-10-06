@@ -25,17 +25,18 @@
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); }
-    button, input, select { font: inherit; }
+    button, input, select, textarea { font: inherit; }
     button, a { -webkit-tap-highlight-color: transparent; }
     a { color: inherit; text-decoration: none; }
     button { color: inherit; }
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
     .shell { width: min(1160px, calc(100% - 64px)); margin: 0 auto; }
     .topbar { height: 78px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(23,61,45,.12); }
     .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 23px; font-weight: 800; letter-spacing: .02em; }
     .brand-mark { position: relative; width: 30px; height: 30px; display: inline-block; }
     .brand-mark::before, .brand-mark::after { content: ''; position: absolute; width: 13px; height: 20px; background: var(--green); border-radius: 13px 2px 13px 2px; transform: rotate(-32deg); top: 3px; left: 2px; }
     .brand-mark::after { background: #8cae71; transform: rotate(32deg) scaleX(-1); top: 8px; left: 14px; }
-    .nav { display: flex; align-items: center; gap: 34px; color: #435c4d; font-size: 13px; font-weight: 600; }
+    .nav { display: flex; align-items: center; gap: 27px; color: #435c4d; font-size: 13px; font-weight: 600; }
     .nav a:hover { color: var(--orange); }
     .nav-cta, .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid var(--green); border-radius: 4px; background: var(--green); color: white; padding: 13px 19px; font-size: 13px; font-weight: 700; cursor: pointer; transition: transform .18s ease, background .18s ease; }
     .nav-cta { padding: 11px 16px; }
@@ -100,7 +101,6 @@
     .distance { color: #637165; font-size: 10px; }
     .request-button { border: 0; border-radius: 3px; background: var(--leaf); color: var(--green); padding: 9px 11px; font-size: 10px; font-weight: 800; cursor: pointer; }
     .request-button:hover { background: var(--leaf-2); }
-    .request-button[aria-pressed="true"] { background: var(--green); color: white; }
     .empty-state { display: none; padding: 40px; text-align: center; color: var(--muted); }
     .how { background: #e8eddf; }
     .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 68px; align-items: start; }
@@ -126,14 +126,35 @@
     .footer-links { display: flex; gap: 20px; }
     .toast { position: fixed; right: 24px; bottom: 24px; z-index: 10; max-width: calc(100% - 48px); padding: 13px 17px; border-radius: 4px; background: var(--green); color: white; font-size: 12px; box-shadow: 0 8px 25px #173d2d2c; opacity: 0; transform: translateY(12px); pointer-events: none; transition: .22s ease; }
     .toast.show { opacity: 1; transform: translateY(0); }
-    dialog { width: min(440px, calc(100% - 30px)); padding: 26px; border: 1px solid var(--line); border-radius: 5px; background: var(--paper); color: var(--ink); box-shadow: 0 18px 80px #173d2d3b; }
+    .confirmation { width: min(1160px, calc(100% - 64px)); margin: 18px auto 0; padding: 15px 18px; border: 1px solid #bcd5a8; border-left: 4px solid var(--green-2); border-radius: 5px; background: var(--leaf); color: var(--green); font-size: 13px; font-weight: 700; }
+    .confirmation[hidden] { display: none; }
+    .form-panel { padding: 27px; border: 1px solid #e7e8dc; border-radius: 5px; background: var(--paper); }
+    .site-form { width: 100%; }
+    .form-grid, .dialog-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 14px; }
+    .field { display: block; min-width: 0; margin: 0; color: var(--green); font-size: 11px; font-weight: 800; }
+    .field-wide { grid-column: 1 / -1; }
+    input, select, textarea { width: 100%; margin-top: 7px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 6px; background: white; color: var(--ink); font-size: 13px; }
+    input:focus-visible, select:focus-visible, textarea:focus-visible { border-color: var(--green-2); outline-color: var(--orange); }
+    input::placeholder, textarea::placeholder { color: #879187; }
+    textarea { min-height: 105px; resize: vertical; line-height: 1.5; }
+    .form-submit { margin-top: 20px; }
+    .form-note { margin: 0 0 18px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .dialog-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+    dialog { width: min(560px, calc(100% - 30px)); max-height: calc(100vh - 32px); overflow-y: auto; padding: 26px; border: 1px solid var(--line); border-radius: 5px; background: var(--paper); color: var(--ink); box-shadow: 0 18px 80px #173d2d3b; }
     dialog::backdrop { background: #173d2d70; }
     dialog h2 { margin: 0 0 7px; color: var(--green); font-family: var(--serif); font-size: 30px; font-weight: 500; }
     dialog p { color: var(--muted); font-size: 12px; line-height: 1.6; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    label { display: block; margin-top: 13px; color: var(--green); font-size: 10px; font-weight: 800; }
-    input, select { width: 100%; margin-top: 6px; padding: 11px; border: 1px solid var(--line); border-radius: 3px; background: white; color: var(--ink); font-size: 12px; }
-    .dialog-actions { display: flex; gap: 9px; margin-top: 20px; }
+    .rating-fieldset { margin: 0 0 22px; padding: 0; border: 0; }
+    .rating-fieldset legend { margin-bottom: 10px; color: var(--green); font-size: 11px; font-weight: 800; }
+    .rating-stars { display: flex; align-items: center; gap: 7px; }
+    .rating-option { display: inline-flex; position: relative; align-items: center; justify-content: center; width: 42px; height: 42px; margin: 0; border-radius: 4px; cursor: pointer; }
+    .rating-option input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; }
+    .rating-option span { color: #a6b09f; font-size: 32px; line-height: 1; transition: color .15s ease, transform .15s ease; }
+    .rating-option.selected span { color: #d59a38; }
+    .rating-option:hover span { transform: translateY(-2px); }
+    .rating-option:focus-within { outline: 3px solid var(--orange); outline-offset: 2px; }
+    .anonymous-label { display: flex; align-items: center; gap: 9px; margin: 12px 0 0; color: var(--green); font-size: 11px; font-weight: 700; cursor: pointer; }
+    .anonymous-label input { width: 17px; height: 17px; margin: 0; accent-color: var(--green); }
     @keyframes reveal { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
     @media (max-width: 760px) {
       .shell { width: min(100% - 38px, 570px); }
@@ -154,6 +175,13 @@
       .how-grid { grid-template-columns: 1fr; gap: 29px; }.how-intro h2 { font-size: 42px; }
       .closing { align-items: start; flex-direction: column; padding: 58px 0; }
       .partner-strip { justify-content: flex-start; gap: 17px 25px; }.partner-strip .caption { width: 100%; }
+      .confirmation { width: calc(100% - 38px); }
+      .form-panel { padding: 21px; }
+    }
+    @media (max-width: 520px) {
+      .form-grid, .dialog-fields { grid-template-columns: 1fr; }
+      .field-wide { grid-column: auto; }
+      .dialog-actions .button { flex: 1; }
     }
     @media (max-width: 420px) {
       .shell { width: calc(100% - 32px); }
@@ -178,10 +206,12 @@
     <a class="brand" href="#top" aria-label="NEMA home"><span class="brand-mark" aria-hidden="true"></span><span>NEMA</span></a>
     <nav class="nav" aria-label="Main navigation">
       <a href="#food">Available food</a>
+      <a href="#donation">Donate food</a>
       <a href="#how">How it works</a>
       <a class="nav-cta" href="#join">Join the movement <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
+  <div class="confirmation" id="submission-message" role="status" aria-live="polite" hidden></div>
   <main>
     <section class="shell hero" id="top">
       <div>
@@ -222,18 +252,44 @@
       <div class="food-grid" id="food-grid">
         <article class="food-card" data-category="meals">
           <div class="food-visual"><span class="meal-label">Ready meals</span><div class="plate"><span class="food-symbol" aria-hidden="true">🍗</span></div></div>
-          <div class="food-content"><div class="food-title-row"><h3>Grilled chicken meals</h3><span class="servings">24 meals</span></div><p class="food-meta">Freshly prepared · Al Barsha</p><div class="food-bottom"><span class="distance">Pickup today<br>2:00–4:00 pm</span><button class="request-button" aria-pressed="false">Request pickup</button></div></div>
+          <div class="food-content"><div class="food-title-row"><h3>Grilled chicken meals</h3><span class="servings">24 meals</span></div><p class="food-meta">Freshly prepared · Al Barsha</p><div class="food-bottom"><span class="distance">Pickup today<br>2:00–4:00 pm</span><button class="request-button" type="button">Request pickup</button></div></div>
         </article>
         <article class="food-card" data-category="salads">
           <div class="food-visual salad"><span class="meal-label">Fresh today</span><div class="plate"><span class="food-symbol" aria-hidden="true">🥗</span></div></div>
-          <div class="food-content"><div class="food-title-row"><h3>Fresh garden salads</h3><span class="servings">16 boxes</span></div><p class="food-meta">Packed this morning · JLT</p><div class="food-bottom"><span class="distance">Pickup today<br>1:30–3:30 pm</span><button class="request-button" aria-pressed="false">Request pickup</button></div></div>
+          <div class="food-content"><div class="food-title-row"><h3>Fresh garden salads</h3><span class="servings">16 boxes</span></div><p class="food-meta">Packed this morning · JLT</p><div class="food-bottom"><span class="distance">Pickup today<br>1:30–3:30 pm</span><button class="request-button" type="button">Request pickup</button></div></div>
         </article>
         <article class="food-card" data-category="bakery">
           <div class="food-visual bakery"><span class="meal-label">Bakery</span><div class="plate"><span class="food-symbol" aria-hidden="true">🥐</span></div></div>
-          <div class="food-content"><div class="food-title-row"><h3>Bakery assortment</h3><span class="servings">30 pieces</span></div><p class="food-meta">Baked today · Downtown Dubai</p><div class="food-bottom"><span class="distance">Pickup today<br>4:00–6:00 pm</span><button class="request-button" aria-pressed="false">Request pickup</button></div></div>
+          <div class="food-content"><div class="food-title-row"><h3>Bakery assortment</h3><span class="servings">30 pieces</span></div><p class="food-meta">Baked today · Downtown Dubai</p><div class="food-bottom"><span class="distance">Pickup today<br>4:00–6:00 pm</span><button class="request-button" type="button">Request pickup</button></div></div>
         </article>
       </div>
       <div class="empty-state" id="empty-state">No listings in this category just yet.</div>
+    </section>
+    <section class="shell section" id="donation">
+      <div class="section-heading">
+        <div><div class="eyebrow">Share what you can</div><h2>Publish a food donation.</h2></div>
+        <p>Tell nearby community partners what you have available and when it can be collected.</p>
+      </div>
+      <form class="site-form form-panel" action="https://formsubmit.co/hajor1518@gmail.com" method="POST">
+        <input type="hidden" name="submissionType" value="NEMA food donation">
+        <input type="hidden" name="_subject" value="New NEMA food donation">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://hajor1518-dot.github.io/Www.nema.fund.ae/?submitted=donation">
+        <div class="form-grid">
+          <label class="field">Business or donor name<input type="text" name="businessName" autocomplete="organization" required></label>
+          <label class="field">Contact number<input type="tel" name="contactNumber" autocomplete="tel" placeholder="+971 50 123 4567" required></label>
+          <label class="field">Contact email<input type="email" name="contactEmail" autocomplete="email" placeholder="you@business.ae" required></label>
+          <label class="field">Food category<select name="foodCategory" required><option value="" disabled selected>Select a category</option><option>Prepared meals</option><option>Bakery</option><option>Fruit and vegetables</option><option>Packaged food</option><option>Dairy</option><option>Meat and poultry</option><option>Drinks</option><option>Other safe food</option></select></label>
+          <label class="field">Food name<input type="text" name="foodName" required></label>
+          <label class="field">Quantity<input type="number" name="quantity" min="1" step="any" required></label>
+          <label class="field field-wide">Pickup location<input type="text" name="pickupLocation" placeholder="Enter the complete pickup address" autocomplete="street-address" required></label>
+          <label class="field field-wide">Pickup date and time<input type="datetime-local" name="pickupDateTime" required></label>
+          <label class="field">Storage information<input type="text" name="storageInformation" required></label>
+          <label class="field">Allergy information<input type="text" name="allergyInformation" required></label>
+          <label class="field field-wide">Additional notes<textarea name="additionalNotes" placeholder="Any other details for the receiving organisation"></textarea></label>
+        </div>
+        <button class="button form-submit" type="submit">Publish donation</button>
+      </form>
     </section>
     <section class="how section" id="how">
       <div class="shell how-grid">
@@ -249,7 +305,7 @@
             <div class="step"><span class="step-number">02</span><div><h3>Add your surplus food</h3><p>Share what's available, how much there is and when it can be collected.</p></div></div>
             <div class="step"><span class="step-number">03</span><div><h3>Publish your listing</h3><p>Nearby registered charities see your offer as soon as it goes live.</p></div></div>
             <div class="step"><span class="step-number">04</span><div><h3>Manage requests</h3><p>Confirm a charity's request and follow the handoff through pickup.</p></div></div>
-            <button class="button how-action" data-open-form="donor">Become a food donor <span aria-hidden="true">→</span></button>
+            <a class="button how-action" href="#donation">Publish a donation <span aria-hidden="true">→</span></a>
           </div>
           <div class="role-panel" id="charity-panel" role="tabpanel" aria-labelledby="charity-tab" hidden>
             <div class="step"><span class="step-number">01</span><div><h3>Browse available food</h3><p>Explore nearby listings by food type, quantity and pickup time.</p></div></div>
@@ -261,20 +317,63 @@
       </div>
     </section>
     <section class="shell partner-strip" aria-label="NEMA partners"><span class="caption">Better together</span><span>Restaurants</span><span>Hotels</span><span>Supermarkets</span><span>Community kitchens</span><span>Charities</span></section>
+    <section class="shell section" id="feedback">
+      <div class="section-heading">
+        <div><div class="eyebrow">Help us do better</div><h2>Rate your NEMA experience</h2></div>
+        <p>Your feedback helps us make food rescue work better for everyone.</p>
+      </div>
+      <form class="site-form form-panel" action="https://formsubmit.co/hajor1518@gmail.com" method="POST">
+        <input type="hidden" name="submissionType" value="NEMA rating and survey">
+        <input type="hidden" name="_subject" value="New NEMA rating and survey response">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://hajor1518-dot.github.io/Www.nema.fund.ae/?submitted=survey">
+        <fieldset class="rating-fieldset">
+          <legend>Rating (required)</legend>
+          <div class="rating-stars">
+            <label class="rating-option"><input type="radio" name="rating" value="1 star" aria-label="1 star" required><span aria-hidden="true">★</span></label>
+            <label class="rating-option"><input type="radio" name="rating" value="2 stars" aria-label="2 stars" required><span aria-hidden="true">★</span></label>
+            <label class="rating-option"><input type="radio" name="rating" value="3 stars" aria-label="3 stars" required><span aria-hidden="true">★</span></label>
+            <label class="rating-option"><input type="radio" name="rating" value="4 stars" aria-label="4 stars" required><span aria-hidden="true">★</span></label>
+            <label class="rating-option"><input type="radio" name="rating" value="5 stars" aria-label="5 stars" required><span aria-hidden="true">★</span></label>
+          </div>
+        </fieldset>
+        <div class="form-grid">
+          <div class="field">
+            <label for="reviewer-name">Name (optional)</label>
+            <input id="reviewer-name" type="text" name="reviewerName" placeholder="Leave blank to stay anonymous" autocomplete="name">
+            <input id="anonymous-reviewer" type="hidden" name="reviewerName" value="Anonymous" disabled>
+            <label class="anonymous-label" for="anonymous-review"><input id="anonymous-review" type="checkbox" name="anonymous" value="Yes"><span>Submit my review anonymously</span></label>
+          </div>
+          <label class="field">Your opinion<textarea name="opinion" placeholder="Tell us what went well or what NEMA can improve" required></textarea></label>
+        </div>
+        <button class="button form-submit" type="submit">Send feedback</button>
+      </form>
+    </section>
     <section class="shell closing" id="join">
       <h2>Make surplus mean<br><em>something more.</em></h2>
-      <button class="button" data-open-form="donor">Join NEMA today <span aria-hidden="true">↗</span></button>
+      <button class="button" type="button" data-open-form="donor">Join NEMA today <span aria-hidden="true">↗</span></button>
     </section>
   </main>
-  <footer><div class="shell footer-inner"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>NEMA</span></a><span>Food rescued. Community nourished. UAE.</span><div class="footer-links"><a href="#food">Available food</a><a href="#how">How it works</a><a href="mailto:hello@nema.fund.ae">Get in touch</a></div></div></footer>
+  <footer><div class="shell footer-inner"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>NEMA</span></a><span>Food rescued. Community nourished. UAE.</span><div class="footer-links"><a href="#food">Available food</a><a href="#feedback">Rate NEMA</a><a href="mailto:hello@nema.fund.ae">Get in touch</a></div></div></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <dialog id="join-dialog" aria-labelledby="dialog-title">
-    <form id="join-form">
-      <h2 id="dialog-title">Let's do good together.</h2>
+    <form id="join-form" action="https://formsubmit.co/hajor1518@gmail.com" method="POST">
+      <input type="hidden" name="submissionType" value="NEMA donor or charity request">
+      <input type="hidden" name="_subject" value="New NEMA donor or charity request">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://hajor1518-dot.github.io/Www.nema.fund.ae/?submitted=request">
+      <h2 id="dialog-title">Let’s do good together.</h2>
       <p>Tell us a little about your organisation and the NEMA team will be in touch.</p>
-      <div class="form-row"><label>Organisation name<input name="organisation" required placeholder="Your organisation"></label><label>Your role<select name="role"><option>Food donor</option><option>Charity</option></select></label></div>
-      <label>Work email<input type="email" name="email" required placeholder="you@organisation.ae"></label>
-      <div class="dialog-actions"><button class="button" type="submit">Send interest <span aria-hidden="true">→</span></button><button class="button secondary" type="button" id="close-dialog">Not now</button></div>
+      <div class="dialog-fields">
+        <label class="field">Organisation name<input name="organisation" type="text" autocomplete="organization" required placeholder="Your organisation"></label>
+        <label class="field">Your role<select name="role" required><option value="" disabled selected>Select your role</option><option>Food donor</option><option>Charity</option><option>NGO</option><option>Volunteer</option><option>Community organisation</option></select></label>
+        <label class="field field-wide">Work email<input type="email" name="email" autocomplete="email" required placeholder="you@organisation.ae"></label>
+        <label class="field field-wide">Contact number<input type="tel" name="contactNumber" autocomplete="tel" placeholder="+971 50 123 4567" required></label>
+        <label class="field field-wide">Pickup location<input type="text" name="pickupLocation" autocomplete="street-address" placeholder="Enter the complete pickup address" required></label>
+        <label class="field field-wide">Preferred pickup date and time<input type="datetime-local" name="pickupDateTime" required></label>
+        <label class="field field-wide">Additional details<textarea name="message" placeholder="Describe the available food or support needed"></textarea></label>
+      </div>
+      <div class="dialog-actions"><button class="button" type="submit">Send request</button><button class="button secondary" type="button" id="close-dialog">Not now</button></div>
     </form>
   </dialog>
   <script>
@@ -283,6 +382,12 @@
     const emptyState = document.getElementById('empty-state');
     const toast = document.getElementById('toast');
     const dialog = document.getElementById('join-dialog');
+    const roleSelect = dialog.querySelector('[name="role"]');
+    const messageField = dialog.querySelector('[name="message"]');
+    const reviewerName = document.getElementById('reviewer-name');
+    const anonymousReviewer = document.getElementById('anonymous-reviewer');
+    const anonymousReview = document.getElementById('anonymous-review');
+    const confirmation = document.getElementById('submission-message');
     let toastTimer;
 
     function showToast(message) {
@@ -319,28 +424,46 @@
     }));
 
     document.querySelectorAll('.request-button').forEach((button) => button.addEventListener('click', () => {
-      const requested = button.getAttribute('aria-pressed') === 'true';
-      button.setAttribute('aria-pressed', String(!requested));
-      button.textContent = requested ? 'Request pickup' : 'Requested ✓';
-      showToast(requested ? 'Pickup request removed.' : 'Pickup request sent. We’ll keep you updated.');
+      const foodName = button.closest('.food-card').querySelector('.food-title-row h3').textContent;
+      roleSelect.value = 'Charity';
+      messageField.value = `Pickup request for ${foodName}`;
+      dialog.showModal();
     }));
 
     document.querySelectorAll('[data-open-form]').forEach((button) => button.addEventListener('click', () => {
-      const role = button.dataset.openForm;
-      const roleSelect = dialog.querySelector('[name="role"]');
-      roleSelect.value = role === 'charity' ? 'Charity' : 'Food donor';
+      roleSelect.value = button.dataset.openForm === 'charity' ? 'Charity' : 'Food donor';
+      messageField.value = '';
       dialog.showModal();
     }));
     document.getElementById('close-dialog').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
-    document.getElementById('join-form').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const formData = new FormData(event.currentTarget);
-      const organisation = formData.get('organisation').trim();
-      dialog.close();
-      event.currentTarget.reset();
-      showToast(`Thanks, ${organisation}. NEMA will be in touch soon.`);
+
+    anonymousReview.addEventListener('change', () => {
+      reviewerName.value = '';
+      reviewerName.disabled = anonymousReview.checked;
+      anonymousReviewer.disabled = !anonymousReview.checked;
     });
+
+    document.querySelectorAll('.rating-option input').forEach((input) => input.addEventListener('change', () => {
+      const selectedRating = Number.parseInt(input.value, 10);
+      document.querySelectorAll('.rating-option').forEach((option, index) => {
+        option.classList.toggle('selected', index < selectedRating);
+      });
+    }));
+
+    const successMessages = {
+      request: 'Thank you! The NEMA team received your request and will contact you soon.',
+      donation: 'Thank you! Your food donation was sent to the NEMA team.',
+      survey: 'Thank you for helping NEMA improve.'
+    };
+    const submittedType = new URLSearchParams(window.location.search).get('submitted');
+    if (successMessages[submittedType]) {
+      confirmation.textContent = successMessages[submittedType];
+      confirmation.hidden = false;
+      const currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.delete('submitted');
+      window.history.replaceState({}, document.title, `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`);
+    }
   </script>
 </body>
 </html>
